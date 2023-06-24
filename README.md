@@ -16,7 +16,7 @@ You don’t have to handle field width
 You don’t have to handle precision
 You don’t have to handle the length modifiers
 
-# TASK 1
+## TASK 1
 Handle the following conversion specifiers:
 
 d
@@ -43,7 +43,7 @@ You don’t have to handle field width
 You don’t have to handle precision
 You don’t have to handle the length modifiers
 
-# TASK 4
+## TASK 4
 Use a local buffer of 1024 chars in order to call write as little as possible.
 
 ## TASK 5
