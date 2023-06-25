@@ -68,10 +68,14 @@ int _printf(const char *format, ...)
 
 	va_start(param, format);
 
+	/**
+	 *
+
 	if (format == NULL || strcmp(format, " ") == 0)
 	{
 		return (-1);
 	}
+	*/
 	while (format[i] != '\0')
 	{
 		count += check_format(format, &i, param);
