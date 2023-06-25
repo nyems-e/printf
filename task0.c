@@ -10,16 +10,16 @@
  * @param: name of list
  * Return: count
  */
-unsigned int check_format(const char *format, unsigned int *i, va_list param)
+int check_format(const char *format, int *i, va_list param)
 {
-	unsigned int count = 0;
-	unsigned int a = 0;
-
-	char c;
+	int count = 0;
+	int a = 0;
 	char *s;
 
 	if (format[*i] == '%')
 	{
+		if (format[*i + 1] == ' ')
+			return (-1);
 		if (format[*i + 1] == '%')
 		{
 			_putchar('%');
@@ -27,8 +27,7 @@ unsigned int check_format(const char *format, unsigned int *i, va_list param)
 		}
 		else if (format[*i + 1] == 'c')
 		{
-			c = (char)va_arg(param, int);
-			_putchar(c);
+			_putchar(va_arg(param, int));
 			count++;
 		}
 		else if (format[*i + 1] == 's')
@@ -43,6 +42,8 @@ unsigned int check_format(const char *format, unsigned int *i, va_list param)
 				}
 			}
 		}
+		else
+			return (-1);
 		(*i)++;
 	}
 	else
@@ -63,8 +64,8 @@ int _printf(const char *format, ...)
 {
 	va_list param; /* name of list */
 
-	unsigned int count = 0;
-	unsigned int i = 0;
+	int count = 0;
+	int i = 0;
 
 	va_start(param, format);
 
