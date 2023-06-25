@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "main.h"
 #include <stdarg.h>
+#include <string.h>
 
 /**
  * check_format - this is checking for format specifier
@@ -67,7 +68,7 @@ int _printf(const char *format, ...)
 
 	va_start(param, format);
 
-	if (format == NULL)
+	if (format == NULL || strcmp(format, " ") == 0)
 	{
 		return (-1);
 	}
