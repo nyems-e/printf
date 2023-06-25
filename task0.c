@@ -78,6 +78,6 @@ int _printf(const char *format, ...)
 		i++;
 	}
 	va_end(param);
-	_putchar('\n');
 	return (count);
 }
+
