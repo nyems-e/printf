@@ -87,12 +87,16 @@ int handle_extra(const char *format, int *i)
 		_putchar(' ');
 		return (1);
 	}
-	else
-	{
-		_putchar('%');
-		_putchar(format[*i]); /*when conversion specifier is not handled*/
-		return (2);
-	}
+	return (-1);
+
+/***
+*else
+* {
+*_putchar('%');
+* _putchar(format[*i]);
+* return (2);
+* }
+*/
 }
 /**
  *_printf - this is printf replica
@@ -104,6 +108,7 @@ int _printf(const char *format, ...)
 	va_list param; /* name of list */
 	int count = 0;
 	int i = 0;
+	int num = 0;
 
 	va_start(param, format);
 
@@ -118,7 +123,15 @@ int _printf(const char *format, ...)
 		{
 			return (-1);
 		}
-		count += check_format(format, &i, param);
+		num = check_format(format, &i, param);
+		if (num == -1)
+		{
+			return (-1);
+		}
+		else
+		{
+			count += num;
+		}
 		i++;
 	}
 	va_end(param);
