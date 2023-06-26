@@ -23,10 +23,14 @@ int handle_binary(int number)
 	/**
 	 *reversing the remainders stored
 	 */
-	for (i = index - 1; i >= 0; i--)
+	if (store_remainder[index] != ' ')
 	{
-		_putchar(store_remainder[i]);
-		count++;
+		for (i = index - 1; i >= 0; i--)
+		{
+
+			_putchar(store_remainder[i]);
+			count++;
+		}
 	}
 	return (count);
 }
