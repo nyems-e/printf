@@ -81,7 +81,6 @@ return (a);
  */
 int handle_extra(const char *format, int *i)
 {
-	int count = 0;
 
 	if (format[*i] == ' ')
 	{
@@ -92,7 +91,6 @@ int handle_extra(const char *format, int *i)
 	{
 		_putchar('%');
 		_putchar(format[*i]); /*when conversion specifier is not handled*/
-		count += 2;
 		return (2);
 	}
 }
