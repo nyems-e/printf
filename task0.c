@@ -11,6 +11,7 @@
 int check_format(const char *format, int *i, va_list param)
 {
 	int count = 0;
+	int number;
 
 	if (format[*i] == '%')
 	{
@@ -31,6 +32,11 @@ int check_format(const char *format, int *i, va_list param)
 		else if (format[*i] == 'd' || format[*i] == 'i')
 		{
 			count += handle_int(param);
+		}
+		else if (format[*i] == 'b')
+		{
+			number = va_arg(param, int);
+			count += handle_binary(number);
 		}
 		else
 			count += handle_extra(format, i);
