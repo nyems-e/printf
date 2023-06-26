@@ -1,6 +1,4 @@
-#include <stdio.h>
 #include "main.h"
-#include <stdarg.h>
 #include <string.h>
 
 /**
@@ -30,6 +28,10 @@ int check_format(const char *format, int *i, va_list param)
 			_putchar('%');
 			count++;
 		}
+		else if (format[*i] == 'd' || format[*i] == 'i')
+		{
+			count += handle_int(param);
+		}
 		else
 			count += handle_extra(format, i);
 	}
@@ -40,60 +42,8 @@ int check_format(const char *format, int *i, va_list param)
 	}
 	return (count);
 }
-/**
- *handle_char- handle character conversion
- *@param: list of printf parameters
- *Return: character count
- */
-int handle_char(va_list param)
-{
-	int track = va_arg(param, int);
 
-	_putchar(track);
-	return (1);
-}
-/**
- *handle_string- handle string conversion
- *@param: list of printf parameters
- *Return: number characters printed
- */
-int handle_string(va_list param)
-{
-	char *s = va_arg(param, char *);
 
-	int a = 0;
-
-if (s != NULL)
-{
-for (a = 0; s[a] != '\0'; a++)
-{
-_putchar(s[a]);
-}
-}
-return (a);
-}
-
-/**
- * handle_extra - handle extra
- * @format: format passed to printf
- * @i: calling pointer i to reiterate over the format
- * Return: number of characters printed
- */
-int handle_extra(const char *format, int *i)
-{
-
-	if (format[*i] == ' ')
-	{
-		_putchar(' ');
-		return (1);
-	}
-	else
-	{
-		_putchar('%');
-		_putchar(format[*i]);
-		return (2);
-	}
-}
 /**
  *_printf - this is printf replica
  *@format: the argument passed to printf
