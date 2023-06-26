@@ -4,66 +4,86 @@
 #include <string.h>
 
 /**
- * check_format - this is checking for format specifier
- * @format: the format to be checked
- * @i: counter
- * @param: name of list
- * Return: count
+ *check_format - this is checking for format specifier
+ *@format: the format to be checked
+ *@i: counter
+ *@param: name of list
+ *Return: count
  */
 int check_format(const char *format, int *i, va_list param)
 {
 	int count = 0;
-	int a = 0;
-	char *s;
 
 	if (format[*i] == '%')
 	{
-		if (format[*i + 1] == ' ')
-			return (-1);
-		if (format[*i + 1] == '%')
+		(*i)++;
+		if (format[*i] == 'c')
+		{
+			count += handle_char(param);
+		}
+		else if (format[*i] == 's')
+		{
+			count += handle_string(param);
+		}
+		else if (format[*i] == '%')
 		{
 			_putchar('%');
 			count++;
 		}
-		else if (format[*i + 1] == 'c')
-		{
-			_putchar(va_arg(param, int));
-			count++;
-		}
-		else if (format[*i + 1] == 's')
-		{
-			s = va_arg(param, char *);
-			if (s != NULL)
-			{
-				for (a = 0; s[a] != '\0'; a++)
-				{
-					_putchar(s[a]);
-					count++;
-				}
-			}
-		}
 		else
-			return (-1);
-		(*i)++;
+		{
+			_putchar('%');
+			_putchar(format[*i]); /*when conversion specifier is not handled*/
+			count += 2;
+		}
 	}
 	else
 	{
-		_putchar(format[*i]);
+		_putchar(format[*i]); /* no conversion needed*/
 		count++;
 	}
 	return (count);
 }
-
 /**
- * _printf - this is printf replica
- * @format: the argument passed to printf
- * Return: total number of characters printed
+ *handle_char- handle character conversion
+ *@param: list of printf parameters
+ *Return: character count
  */
+int handle_char(va_list param)
+{
+	int track = va_arg(param, int);
 
+	_putchar(track);
+	return (1);
+}
+/**
+ *handle_string- handle string conversion
+ *@param: list of printf parameters
+ *Return: number characters printed
+ */
+int handle_string(va_list param)
+{
+	char *s = va_arg(param, char *);
+
+	int a = 0;
+
+if (s != NULL)
+{
+for (a = 0; s[a] != '\0'; a++)
+{
+_putchar(s[a]);
+}
+}
+return (a);
+}
+/**
+ *_printf - this is printf replica
+ *@format: the argument passed to printf
+ *Return: total number of characters printed
+ */
 int _printf(const char *format, ...)
 {
 	va_list param; /* name of list */
-
 	int count = 0;
 	int i = 0;
 
@@ -71,6 +91,7 @@ int _printf(const char *format, ...)
 
 	if (format == NULL || strcmp(format, " ") == 0)
 	{
+		va_end(param);
 		return (-1);
 	}
 	while (format[i] != '\0')
@@ -81,4 +102,3 @@ int _printf(const char *format, ...)
 	va_end(param);
 	return (count);
 }
-
