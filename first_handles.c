@@ -6,10 +6,10 @@
  */
 int handle_int(va_list param)
 {
-int i = 0;
+int i;
+int number = va_arg(param, int);
+int rev_number = 0;
 int count = 0;
-long int number = va_arg(param, long int);
-long int rev_number = 0;
 if (number < 0)
 {
 	_putchar('-');
@@ -19,8 +19,12 @@ if (number < 0)
 for (i = 0; number > 0; i++) /*print number in reverse order*/
 {
 	rev_number = rev_number * 10 + (number % 10);
-	_putchar('0' + (rev_number % 10));
 	number = number / 10;
+}
+while (rev_number > 0)
+{
+	_putchar('0' + (rev_number % 10));
+	rev_number = rev_number / 10;
 }
 return (i + count);
 }
