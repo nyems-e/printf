@@ -8,8 +8,8 @@ int handle_int(va_list param)
 {
 int i = 0;
 int count = 0;
-int number = va_arg(param, int);
-int rev_number = 0;
+long int number = va_arg(param, long int);
+long int rev_number = 0;
 if (number < 0)
 {
 	_putchar('-');
