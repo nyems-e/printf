@@ -3,6 +3,7 @@
 
 #include <stdarg.h>
 
+int handle_extra(const char *format, int *i);
 int _printf(const char *format, ...);
 int _putchar(char c);
 int check_format(const char *format, int *i, va_list parameter);

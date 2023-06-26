@@ -30,17 +30,16 @@ int check_format(const char *format, int *i, va_list param)
 			_putchar('%');
 			count++;
 		}
+		else if (format[*i] == ' ')
+		{
+			count += handle_extra(format, i);
+			return (count);
+		}
 		else
 		{
-			_putchar('%');
-			_putchar(format[*i]); /*when conversion specifier is not handled*/
-			count += 2;
+			_putchar(format[*i]); /* no conversion needed*/
+			count++;
 		}
-	}
-	else
-	{
-		_putchar(format[*i]); /* no conversion needed*/
-		count++;
 	}
 	return (count);
 }
@@ -76,6 +75,30 @@ _putchar(s[a]);
 }
 return (a);
 }
+
+/**
+ * handle_extra - handle extra
+ * @format: format passed to printf
+ * @i: calling pointer i to reiterate over the format
+ * Return: number of characters printed
+ */
+int handle_extra(const char *format, int *i)
+{
+	int count = 0;
+
+	if (format[*i] == ' ')
+	{
+		_putchar(' ');
+		return (1);
+	}
+	else
+	{
+		_putchar('%');
+		_putchar(format[*i]); /*when conversion specifier is not handled*/
+		count += 2;
+		return (2);
+	}
+}
 /**
  *_printf - this is printf replica
  *@format: the argument passed to printf
@@ -96,8 +119,10 @@ int _printf(const char *format, ...)
 	}
 	while (format[i] != '\0')
 	{
-		if (format[i] == ' ')
+		if (format[i + 1] == '\0' && format[i] == '%')
+		{
 			return (-1);
+		}
 		count += check_format(format, &i, param);
 		i++;
 	}
