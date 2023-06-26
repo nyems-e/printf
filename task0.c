@@ -30,16 +30,13 @@ int check_format(const char *format, int *i, va_list param)
 			_putchar('%');
 			count++;
 		}
-		else if (format[*i] == ' ')
-		{
-			count += handle_extra(format, i);
-			return (count);
-		}
 		else
-		{
-			_putchar(format[*i]); /* no conversion needed*/
-			count++;
-		}
+			count += handle_extra(format, i);
+	}
+	else
+	{
+		_putchar(format[*i]); /* no conversion needed*/
+		count++;
 	}
 	return (count);
 }
