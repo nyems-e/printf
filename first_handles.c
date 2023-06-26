@@ -1,4 +1,5 @@
 #include "main.h"
+#include <limits.h>
 /**
  * handle_int- handle integers
  * @param: list of arguments
@@ -6,9 +7,7 @@
  */
 int handle_int(va_list param)
 {
-int i;
 int number = va_arg(param, int);
-int rev_number = 0;
 int count = 0;
 if (number < 0)
 {
@@ -16,6 +15,34 @@ if (number < 0)
 	number = -number;
 	count++;
 }
+if (number == 0)
+{
+	_putchar('0');
+	count++;
+}
+if (number >= INT_MAX)
+{
+	count += print_digits(INT_MAX);
+	return (count);
+}
+if (number <= INT_MIN)
+{
+	count += print_digits(INT_MIN);
+	return (count);
+}
+count += print_digits(number);
+return (count);
+}
+
+/**
+ * print_digits- print digits
+ * @number: number to print
+ * Return: count
+ */
+int print_digits(int number)
+{
+int i = 0;
+int rev_number = 0;
 for (i = 0; number > 0; i++) /*print number in reverse order*/
 {
 	rev_number = rev_number * 10 + (number % 10);
@@ -26,7 +53,7 @@ while (rev_number > 0)
 	_putchar('0' + (rev_number % 10));
 	rev_number = rev_number / 10;
 }
-return (i + count);
+return (i);
 }
 
 /**

@@ -10,4 +10,5 @@ int check_format(const char *format, int *i, va_list parameter);
 int handle_char(va_list param);
 int handle_string(va_list param);
 int handle_int(va_list param);
+int print_digits(int number);
 #endif
