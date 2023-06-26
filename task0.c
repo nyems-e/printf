@@ -96,6 +96,8 @@ int _printf(const char *format, ...)
 	}
 	while (format[i] != '\0')
 	{
+		if (format[i] == ' ')
+			return (-1);
 		count += check_format(format, &i, param);
 		i++;
 	}
