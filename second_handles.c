@@ -1,6 +1,6 @@
 #include "main.h"
 #include <stdio.h>
-#include <stdlib.h>
+
 /**
  * handle_binary - this function converts and prints an int in the binary
  * @number: the argument passed to _printf
@@ -9,7 +9,7 @@
 
 int handle_binary(int number)
 {
-	char *store_remainder = malloc(sizeof(int) * 32);
+	char store_remainder[32];
 	int index = 0; /* index to increase the iterating to store the remainder */
 	int i;
 	int count = 0;
@@ -29,6 +29,5 @@ int handle_binary(int number)
 		_putchar(store_remainder[i]);
 		count++;
 	}
-	free(store_remainder);
 	return (count);
 }
