@@ -1,7 +1,6 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
-
 /**
  * handle_binary - this function converts and prints an int in the binary
  * @number: the argument passed to _printf
@@ -10,7 +9,7 @@
 
 int handle_binary(int number)
 {
-	int *store_remainder = malloc(sizeof(int) * 32);
+	char *store_remainder = malloc(sizeof(int) * 32);
 	int index = 0; /* index to increase the iterating to store the remainder */
 	int i;
 	int count = 0;
@@ -25,13 +24,10 @@ int handle_binary(int number)
 	/**
 	 *reversing the remainders stored
 	 */
-	if (store_remainder[index] != ' ')
+	for (i = index - 1; i >= 0; i--)
 	{
-		for (i = index - 1; i >= 0; i--)
-		{
-			_putchar(store_remainder[i]);
-			count++;
-		}
+		_putchar(store_remainder[i]);
+		count++;
 	}
 	free(store_remainder);
 	return (count);
