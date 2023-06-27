@@ -14,6 +14,10 @@ int handle_binary(unsigned int number)
 	int i;
 	int count = 0;
 
+	if (number == ' ')
+	{
+		_putchar(' ');
+	}
 	while (number > 0)
 	{
 		store_remainder[index] = number % 2;
