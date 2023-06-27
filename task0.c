@@ -35,7 +35,7 @@ int check_format(const char *format, int *i, va_list param)
 		}
 		else if (format[*i] == 'b')
 		{
-			number = va_arg(param, int);
+			number = va_arg(param, unsigned int);
 			count += handle_binary(number);
 		}
 		else

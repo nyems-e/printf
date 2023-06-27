@@ -7,7 +7,7 @@
  * Return: number of characters printed
  */
 
-int handle_binary(int number)
+int handle_binary(unsigned int number)
 {
 	char store_remainder[32];
 	int index = 0; /* index to increase the iterating to store the remainder */
