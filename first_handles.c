@@ -1,5 +1,7 @@
 #include "main.h"
 #include <limits.h>
+
+
 /**
  * handle_int- handle integers
  * @param: list of arguments
@@ -9,26 +11,30 @@ int handle_int(va_list param)
 {
 int number = va_arg(param, int);
 int count = 0;
+int check = number;
+int track = 0;
+int check_result = 0;
+
+if (number == 0)
+{
+	_putchar('0');
+	return (count + 1);
+}
 if (number < 0)
 {
 	_putchar('-');
 	number = -number;
-	count++;
 }
-if (number == 0)
+while (check != 0)
 {
-	_putchar('0');
-	count++;
+	check /= 10;
+	track++;
 }
-if (number >= INT_MAX)
+check_result = number + track;
+if ((number > 0 && track > 0 && check_result < 0) ||
+(number < 0 && track < 0 && check_result >= 0))
 {
-	count += print_digits(INT_MAX);
-	return (count);
-}
-if (number <= INT_MIN)
-{
-	count += print_digits(INT_MIN);
-	return (count);
+	return (-1);
 }
 count += print_digits(number);
 return (count);
