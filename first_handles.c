@@ -83,16 +83,24 @@ int handle_char(va_list param)
  */
 int handle_string(va_list param)
 {
-	char *s = va_arg(param, char *);
-
-	int a = 0;
+char *s = va_arg(param, char *);
+int a = 0;
+char *n = "(null)";
 
 if (s != NULL)
 {
-for (a = 0; s[a] != '\0'; a++)
-{
-_putchar(s[a]);
+	for (a = 0; s[a] != '\0'; a++)
+	{	
+		_putchar(s[a]);
+	}
 }
+else 
+{
+	while (n[a] != '\0')
+	{
+		_putchar(n[a]);
+		a++;
+	}
 }
 return (a);
 }
