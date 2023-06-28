@@ -24,6 +24,7 @@ if (number < 0)
 {
 	_putchar('-');
 	number = -number;
+	count++;
 }
 while (check != 0)
 {
@@ -90,11 +91,11 @@ char *n = "(null)";
 if (s != NULL)
 {
 	for (a = 0; s[a] != '\0'; a++)
-	{
+	{	
 		_putchar(s[a]);
 	}
 }
-else
+else 
 {
 	while (n[a] != '\0')
 	{
