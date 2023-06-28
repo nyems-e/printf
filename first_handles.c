@@ -9,7 +9,7 @@
  */
 int handle_int(va_list param)
 {
-int number = va_arg(param, int);
+long int number = va_arg(param, int);
 int count = 0;
 if (number == 0)
 {
@@ -19,7 +19,7 @@ if (number == 0)
 if (number < 0)
 {
 	_putchar('-');
-	number = -number;
+	number = (number) * (-1);
 	count++;
 }
 count += print_digits(number, 10);
@@ -32,7 +32,7 @@ return (count);
  * @number: number to print
  * Return: count
  */
-int print_digits(int number, int base)
+int print_digits(long int number, int base)
 {
 int i = 0;
 int j = 0;
@@ -40,7 +40,7 @@ char temp;
 char str[20];
 int ind_z = 0;
 int ind_l = 0;
-int rev_number = 0;
+long int rev_number = 0;
 /*changes number to acii characters in a charater array(string)*/
 while (number > 0)
 {
