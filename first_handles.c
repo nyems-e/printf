@@ -1,6 +1,6 @@
 #include "main.h"
 #include <limits.h>
-
+#include <stdlib.h>
 
 /**
  * handle_int- handle integers
@@ -11,10 +11,6 @@ int handle_int(va_list param)
 {
 int number = va_arg(param, int);
 int count = 0;
-int check = number;
-int track = 0;
-int check_result = 0;
-
 if (number == 0)
 {
 	_putchar('0');
@@ -26,43 +22,50 @@ if (number < 0)
 	number = -number;
 	count++;
 }
-while (check != 0)
-{
-	check /= 10;
-	track++;
-}
-check_result = number + track;
-if ((number > 0 && track > 0 && check_result < 0) ||
-(number < 0 && track < 0 && check_result >= 0))
-{
-	return (-1);
-}
-count += print_digits(number);
+count += print_digits(number, 10);
 return (count);
 }
+
 
 /**
  * print_digits- print digits
  * @number: number to print
  * Return: count
  */
-int print_digits(int number)
+int print_digits(int number, int base)
 {
 int i = 0;
+int j = 0;
+char temp;
+char str[20];
+int ind_z = 0;
+int ind_l = 0;
 int rev_number = 0;
-for (i = 0; number > 0; i++) /*print number in reverse order*/
+/*changes number to acii characters in a charater array(string)*/
+while (number > 0)
 {
-	rev_number = rev_number * 10 + (number % 10);
-	number = number / 10;
+	rev_number = number % base;
+	str[i++] = (rev_number > 9) ? (rev_number - 10) + 'a' : rev_number + '0';
+	number = number / base;
 }
-while (rev_number > 0)
+str[i] = '\0';
+
+ind_l = i - 1;
+while (ind_z < ind_l) /*reverse string */
 {
-	_putchar('0' + (rev_number % 10));
-	rev_number = rev_number / 10;
+	temp = str[ind_z];
+	str[ind_z] = str[ind_l];
+	str[ind_l] = temp;
+	ind_z++;
+	ind_l--;
+}
+while (str[j] != '\0') /*print number*/
+{
+	_putchar(str[j]);
+	j++;
 }
 return (i);
 }
-
 /**
  *handle_char- handle character conversion
  *@param: list of printf parameters
@@ -91,11 +94,11 @@ char *n = "(null)";
 if (s != NULL)
 {
 	for (a = 0; s[a] != '\0'; a++)
-	{	
+	{
 		_putchar(s[a]);
 	}
 }
-else 
+else
 {
 	while (n[a] != '\0')
 	{
