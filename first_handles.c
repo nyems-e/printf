@@ -1,6 +1,6 @@
 #include "main.h"
-#include <limits.h>
-#include <stdlib.h>
+
+
 
 /**
  * handle_int- handle integers
