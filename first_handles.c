@@ -30,6 +30,7 @@ return (count);
 /**
  * print_digits- print digits
  * @number: number to print
+ * @base: base
  * Return: count
  */
 int print_digits(long int number, int base)
