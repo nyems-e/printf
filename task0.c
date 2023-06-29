@@ -20,7 +20,7 @@ int check_format(const char *format, int *i, va_list param)
 		count += check_int(param, format[*i]);
 		count += check_bin(param, format[*i]);
 		if  (count == 0)
-			(handle_extra(format, i));
+			count += (handle_extra(format, i));
 	}
 	else
 	{
