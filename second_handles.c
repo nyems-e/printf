@@ -35,3 +35,4 @@ int handle_binary(unsigned int number)
 	}
 	return (count);
 }
+
