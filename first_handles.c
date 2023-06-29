@@ -30,7 +30,6 @@ return (count);
 /**
  * print_digits- print digits
  * @number: number to print
- * @base: base
  * Return: count
  */
 int print_digits(long int number, int base)
@@ -118,16 +117,16 @@ return (a);
  */
 int handle_extra(const char *format, int *i)
 {
-
 	if (format[*i] == ' ')
 	{
 		_putchar(' ');
 		return (1);
 	}
-	else
+	else if (format[*i] != 's')
 	{
 		_putchar('%');
 		_putchar(format[*i]);
 		return (2);
 	}
+	return (0);
 }

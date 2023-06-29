@@ -41,7 +41,6 @@ int _printf(const char *format, ...)
 	va_list param; /* name of list */
 	int count = 0;
 	int i = 0;
-
 	va_start(param, format);
 
 	if (format == NULL || strcmp(format, " ") == 0)
