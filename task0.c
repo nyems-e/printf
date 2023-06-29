@@ -11,35 +11,15 @@
 int check_format(const char *format, int *i, va_list param)
 {
 	int count = 0;
-	int number;
 
 	if (format[*i] == '%')
 	{
 		(*i)++;
-		if (format[*i] == 'c')
-		{
-			count += handle_char(param);
-		}
-		else if (format[*i] == 's')
-		{
-			count += handle_string(param);
-		}
-		else if (format[*i] == '%')
-		{
-			_putchar('%');
-			count++;
-		}
-		else if (format[*i] == 'd' || format[*i] == 'i')
-		{
-			count += handle_int(param);
-		}
-		else if (format[*i] == 'b')
-		{
-			number = va_arg(param, unsigned int);
-			count += handle_binary(number);
-		}
-		else
-			count += handle_extra(format, i);
+		count += check_char_string(param, format[*i]);
+		count += check_percent(format[*i]);
+		count += check_int(param, format[*i]);
+		if  (count == 0)
+			(handle_extra(format, i));
 	}
 	else
 	{
@@ -60,7 +40,6 @@ int _printf(const char *format, ...)
 	va_list param; /* name of list */
 	int count = 0;
 	int i = 0;
-
 	va_start(param, format);
 
 	if (format == NULL || strcmp(format, " ") == 0)
