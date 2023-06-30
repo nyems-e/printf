@@ -5,26 +5,33 @@
 
 /**
  * handle_pointer - this function prints the address of a pointer
- * @take_pointer: address of the pointer
+ * @param: the name of list
+ * @pointer: this is format passed to the printf
  * Return: the number of characters printed
  */
 
-int handle_pointer(void *take_pointer)
+int handle_pointer(va_list param, char pointer)
 {
-	int i, count = 0;
-	unsigned int *address = (unsigned int *)take_pointer;
-	char pointer[20];
+	int count = 0;
 
-	if (take_pointer == NULL)
+	if (pointer == 'p')
 	{
-		return (0);
-	}
-	sprintf(pointer, "%p", (void *)address);
+		void *take_pointer = va_arg(param, void *);
+		int i;
+		unsigned int *address = (unsigned int *)take_pointer;
+		char pointer[20];
 
-	for (i = 0; pointer[i] != '\0'; i++)
-	{
-		_putchar(pointer[i]);
-		count++;
+		if (take_pointer == NULL)
+		{
+			return (0);
+		}
+		sprintf(pointer, "%p", (void *)address);
+
+		for (i = 0; pointer[i] != '\0'; i++)
+		{
+			_putchar(pointer[i]);
+			count++;
+		}
 	}
 	return (count);
 }

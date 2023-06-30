@@ -10,7 +10,7 @@ int check_format(const char *format, int *i, va_list parameter);
 int handle_char(va_list param);
 int handle_string(va_list param);
 int handle_int(va_list param);
-int handle_pointer(void *take_pointer);
+int handle_pointer(va_list param, char pointer);
 int print_digits(long int number, int base);
 int check_char_string(va_list param, char char_specifier);
 int check_percent(char char_specifier);
