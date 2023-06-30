@@ -21,7 +21,7 @@ int check_format(const char *format, int *i, va_list param)
 		count += check_bin(param, format[*i]);
 		count += handle_pointer(param, format[*i]);
 		if  (count == 0)
-			(handle_extra(format, i));
+			count += (handle_extra(format, i));
 	}
 	else
 	{
@@ -44,7 +44,6 @@ int _printf(const char *format, ...)
 	int i = 0;
 
 	va_start(param, format);
-
 	if (format == NULL || strcmp(format, " ") == 0)
 	{
 		va_end(param);

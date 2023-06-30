@@ -56,7 +56,7 @@ return (count);
 
 
 /**
- * check_bin - check if it matches binary
+ * check_bin- check if it matches binary
  * @param: list
  * @char_specifier: character
  * Return: count
